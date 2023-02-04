@@ -1,3 +1,18 @@
+/*********************************************************************************
+*  WEB322 – Assignment 02
+*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part *  of this assignment has been copied manually or electronically from any other source 
+*  (including 3rd party web sites) or distributed to other students.
+* 
+*  Name: Aryan Duhan Student ID: 148819212 Date: 1st feb 2023
+*
+*  Online (Cyclic) Link: ________________________________________________________
+*
+********************************************************************************/ 
+
+
+
+
+
 const fs = require('fs');
 const path = require('path');
 
