@@ -211,7 +211,7 @@ app.post('/posts/add', upload.single('featureImage'), (req, res) => {
   });
 });
 
-app.get('/post/add', (req, res) => {
+app.get('/posts/add', (req, res) => {
   res.render('addPost');
 });
 
@@ -265,7 +265,7 @@ app.get('/blog/:id', async (req, res) => {
   res.render("blog", {data: viewData})
 });
 
-app.get('/post/:id', (req, res) => {
+app.get('/posts/:id', (req, res) => {
   const id = parseInt(req.params.id);
   blogService.getPostById(id)
     .then(data => {
