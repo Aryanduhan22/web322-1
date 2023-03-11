@@ -211,7 +211,7 @@ app.post('/posts/add', upload.single('featureImage'), (req, res) => {
   });
 });
 
-app.get('/posts', (req, res) => {
+app.get('/posts/add', (req, res) => {
   res.render('addPost');
 });
 
