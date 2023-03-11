@@ -1,48 +1,133 @@
-/*********************************************************************************
-*  WEB322 – Assignment 02
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part *  of this assignment has been copied manually or electronically from any other source 
-*  (including 3rd party web sites) or distributed to other students.
-* 
-*  Name: Aryan Duhan Student ID: 148819212 Date: 1st feb 2023
-*
-*  Online (Cyclic) Link: ________________________________________________________
-*
-********************************************************************************/ 
-
-
-
-
-
+//blog-service.js
 const fs = require('fs');
-const path = require('path');
+var posts = [];
+var categories = [];
 
-const readFile = (fileName) => {
+function initialize() {
+    return new Promise((resolve, reject) => {
+        fs.readFile('./data/posts.json',  (err, data) => {
+            if (err) {
+                return reject(err);
+            } 
+            posts = JSON.parse(data);
+            
+
+                fs.readFile('./data/categories.json',  (err, data) => {
+                    if (err) {
+                       return reject(err);
+                    }
+                    categories = JSON.parse(data);
+                    resolve();
+                });
+            
+        });
+    });
+  }
+  
+
+function getPublishedPosts() {
+    return new Promise((resolve, reject) => {
+        var published = posts.filter(post => post.published === true)
+        if(published.length == 0){
+           reject("no results returned");
+        }
+        else{
+           resolve(published);
+        }
+       })
+}
+
+function getAllPosts() {
+    return new Promise((resolve, reject) => {
+        if (posts.length == 0){
+            reject("no results returned");
+        }
+        else{
+            resolve(posts);
+        }
+    })
+}
+
+function getCategories() {
+    return new Promise((resolve, reject) => {
+        if (categories.length == 0){
+            reject("no results returned");
+        }
+        else{
+            resolve(categories);
+        }
+    })
+}
+
+function addPost(postData) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path.join(__dirname, 'data', fileName), 'utf-8', (err, data) => {
-      if (err) {
-        reject(err);
+    if (!postData.published) {
+      postData.published = false;
+    } else {
+      postData.published = true;
+    }
+    postData.id = posts.length + 1;
+    postData.postDate = new Date().toISOString().substr(0, 10); // Add this line to set the postDate to the current date in the format YYYY-MM-DD
+    posts.push(postData);
+    resolve(postData);
+  });
+}
+
+  function getPostsByCategory(category) {
+    return new Promise((resolve, reject) => {
+        const filteredPosts = posts.filter(post => post.category === category);
+        if (filteredPosts.length === 0) {
+          reject("No results returned");
+        } else {
+          resolve(filteredPosts);
+        }
+      });
+  }
+  
+  function getPostsByMinDate(minDateStr) {
+    return new Promise((resolve, reject) => {
+        const filteredPosts = posts.filter(post => new Date(post.postDate) >= new Date(minDateStr));
+        if (filteredPosts.length === 0) {
+          reject("No results returned");
+        } else {
+          resolve(filteredPosts);
+        }
+      });
+  }
+  
+  function getPostById(id) {
+    return new Promise((resolve, reject) => {
+      const foundPost = posts.find(post => post.id === id);
+      if (!foundPost) {
+        reject("No result returned");
       } else {
-        resolve(JSON.parse(data));
+        resolve(foundPost);
       }
     });
-  });
-};
+  }
 
-const getPublishedPosts = async () => {
-  const posts = await readFile('posts.json');
-  return posts.filter(post => post.published === true);
-};
-
-const getAllPosts = async () => {
-  return await readFile('posts.json');
-};
-
-const getAllCategories = async () => {
-  return await readFile('categories.json');
-};
+  function getPublishedPostsByCategory(category) {
+    return new Promise((resolve, reject) => {
+      const publishedAndFilteredPosts = posts.filter(
+        (post) => post.published === true && post.category === category
+      );
+      if (publishedAndFilteredPosts.length === 0) {
+        reject("no results returned");
+      } else {
+        resolve(publishedAndFilteredPosts);
+      }
+    });
+  }
+  
 
 module.exports = {
+    initialize,
   getPublishedPosts,
   getAllPosts,
-  getAllCategories
+  getCategories,
+  addPost,
+  getPostsByCategory,
+  getPostsByMinDate,
+  getPostById,
+  getPublishedPostsByCategory
 };
