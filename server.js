@@ -25,7 +25,7 @@ function onHttpStart() {
   console.log("Express http server listening on: " + HTTP_PORT);
 }
 
-app.get("/about", (req, res) => {
+app.get("/abou t", (req, res) => {
     res.sendFile(__dirname + '/views/about.html');
 });
 
