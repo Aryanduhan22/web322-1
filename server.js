@@ -123,7 +123,7 @@ app.get('/blog', async (req, res) => {
 
 });
 
-app.get('/posts/add', (req, res) => {
+app.get('/posts', (req, res) => {
   if (req.query.category) {
     const category = parseInt(req.query.category);
     blogService.getPostsByCategory(category)
@@ -211,7 +211,7 @@ app.post('/posts/add', upload.single('featureImage'), (req, res) => {
   });
 });
 
-app.get('/posts/add', (req, res) => {
+app.get('/posts', (req, res) => {
   res.render('addPost');
 });
 
