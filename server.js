@@ -123,7 +123,7 @@ app.get('/blog', async (req, res) => {
 
 });
 
-app.get('/posts', (req, res) => {
+app.get('/posts/add', (req, res) => {
   if (req.query.category) {
     const category = parseInt(req.query.category);
     blogService.getPostsByCategory(category)
