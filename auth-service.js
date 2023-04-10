@@ -11,7 +11,7 @@ let userSchema = new Schema({
     }]
 });
 
-let User; // to be defined on new connection (see initialize)
+let User; // to is  be defined on new connection (see initialize)
 
 module.exports.initialize = function () {
     return new Promise(function (resolve, reject) {
