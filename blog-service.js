@@ -3,8 +3,8 @@ const Sequelize = require('sequelize');
 const {gte} = Sequelize.Op.gte;
 
 // set up sequelize to point to our postgres database
-var sequelize = new Sequelize('saqfqqil', 'saqfqqil', 'DXM-Fa4Br2p3y9V4LVyJfQF1exgZynNC', {
-    host: 'rogue.db.elephantsql.com',
+var sequelize = new Sequelize('ezjfomju', 'ezjfomju', 'CAP1crVCEfNczaVUqtcVDtGATPKSo15H', {
+    host: 'rosie.db.elephantsql.com',
     dialect: 'postgres',
     port: 5432,
     dialectOptions: {
