@@ -1,19 +1,38 @@
-{{!-- Show error message if it exists --}}
-{{#if errorMessage}}
-    <div class="alert alert-danger">
-        <strong>Error:</strong> {{errorMessage}}
-    </div>
-{{/if}}
 
-<h2>Login</h2>
-<form method="POST" action="/login">
-    <div class="form-group">
-        <label for="userName">User Name:</label>
-        <input type="text" class="form-control" id="userName" name="userName" placeholder="User Name" required>
+    <div class="container" >
+      <div class="row">
+        <div class="col-md-12">
+        
+          <h2>Log In</h2>
+
+          <hr />
+
+          {{#if errorMessage}}
+            <div class="alert alert-danger"> <strong>Error:</strong> {{errorMessage}}</div> 
+          {{/if}}  
+
+  
+          <form method="post" action="/login">
+  
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input class="form-control" id="userName" name="userName" type="text" placeholder="User Name" required value="{{userName}}" autofocus />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input class="form-control" id="password" name="password" type="password" placeholder="Password" required value="" />
+                    </div>
+                </div>
+            </div>
+  
+            <input type="submit" class="btn btn-success pull-right" value="Login" /><br /><br /><br />
+  
+          </form>
+      </div>
+      </div>
     </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
