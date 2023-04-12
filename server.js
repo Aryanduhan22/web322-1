@@ -4,7 +4,7 @@
 *  of this assignment has been copied manually or electronically from any other source 
 *  (including 3rd party web sites) or distributed to other students.
 * 
-*  Name: Maia Hakimi  Student ID: 187568217 Date: April 7, 2023
+*  Name: Aryan Duhan  Student ID: 148819212 Date: April 7, 2023
 *
 *  Online (Cyclic) Link: https://fantastic-skirt-bee.cyclic.app/
 *
@@ -27,7 +27,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 // Setup client-sessions
 app.use(clientSessions({
     cookieName: "session", // this is the object name that will be added to 'req'
-    secret: "hakimi_web322", // this should be a long un-guessable string.
+    secret: "aryan_web322", // this should be a long un-guessable string.
     duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
     activeDuration: 1000 * 60, // the session will be extended by this many ms each request (1 minute)
   }));

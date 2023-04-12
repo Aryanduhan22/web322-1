@@ -17,13 +17,14 @@ let User;
 
 module.exports.initialize = function () {
     return new Promise(function (resolve, reject) {
-        let db = mongoose.createConnection("mongodb+srv://itsaryanduhan:aryan1044@senecaweb.olctilq.mongodb.net/?retryWrites=true&w=majority");
+        let db = mongoose.createConnection("mongodb+srv://ayranDuhan:aMOoDvnD3hOuJ97g@cluster0.uu64utk.mongodb.net/Cluster0?retryWrites=true&w=majority");
 
         db.on('error', (err)=>{
             reject(err); // reject the promise with the provided error
         });
         db.once('open', ()=>{
            User = db.model("web322_assign6", userSchema);
+           console.log("Connected to DB");
            resolve();
         });
     });
